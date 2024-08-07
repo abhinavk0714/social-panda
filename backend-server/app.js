@@ -12,7 +12,7 @@ const uri = process.env.MONGODB_URL; // Replace with your MongoDB URI and databa
 
 //connecting MongoDB
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
- const db=mongoose.connection;
+const db=mongoose.connection;
 
 db.once('open',()=>console.log("Connected"))
 
@@ -23,5 +23,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
