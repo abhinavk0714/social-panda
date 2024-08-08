@@ -31,8 +31,9 @@ function SideNav({toggleSideBar}) {
         <div className='absolute bottom-10 flex gap-3 items-center'>
      
             <h2>
+            <Link href='/sign-up'>
           <Button variant="ghost" className='flex gap-2 items-center cursor-pointer'><LogIn/>
-          Sign In</Button></h2>
+          Sign In</Button></Link></h2>
         </div>
     </div>
   )

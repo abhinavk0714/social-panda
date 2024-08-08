@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import { Outfit } from 'next/font/google'
 import './globals.css'
 
@@ -11,10 +12,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-  
+    <ClerkProvider>
     <html lang="en">
       <body className={inter.className} >{children}</body>
     </html>
-
+    </ClerkProvider>
   )
 }
