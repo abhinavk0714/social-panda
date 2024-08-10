@@ -1,6 +1,9 @@
 GET http://localhost:8000/user
 
 ###
+GET http://localhost:8000/user/abhinavkrish213@gmail.com
+
+###
 
 POST http://localhost:8000/user
 Content-Type: application/json
@@ -9,4 +12,20 @@ Content-Type: application/json
     "name": "Test user",
     "email": "Test@test.com",
     "image": "Test image"
+}
+
+###
+GET http://localhost:8000/post
+
+
+###
+
+POST http://localhost:8000/post
+Content-Type: application/json
+
+{
+    "postText": "sample post msg",
+    "createdAt": "12345",
+    "createdBy": "66b559370714b090abdd3913",
+    "imageUrl": "sample url"
 }
