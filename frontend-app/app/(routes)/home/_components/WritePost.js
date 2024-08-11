@@ -1,14 +1,16 @@
 import { UserDetailContext } from '@/app/_context/UserDetailContext';
 import GlobalApi from '@/app/_utils/GlobalApi';
 import { Button } from '@/components/ui/button';
-import { useUser } from '@clerk/nextjs'
+import { useUser } from '@clerk/nextjs';
 import { Image, Send, Video } from 'lucide-react';
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext} from 'react';
+import { useToast } from "@/components/ui/use-toast"
 
-function WritePost() {
+function WritePost({getAllPosts}) {
     const {user} = useUser();
     const [userInputPost, setUserInputPost] = useState();
     const {userDetail, setUserDetail} = useContext(UserDetailContext);
+    const {toast} = useToast();
 
     const onCreatePost = () => {
         const data = {
@@ -20,6 +22,21 @@ function WritePost() {
 
         GlobalApi.createPost(data).then(resp => {
             console.log(resp);
+            setUserInputPost('');
+            if(resp) {
+                getAllPosts()
+                toast({
+                    title: "Awesome!",
+                    description: "Your post has been published successfully.",
+                    variant: "success",
+                  })
+            }
+        },(error) => {
+            toast({
+                title: "Uh oh!",
+                description: "There is a server side error!",
+                variant: "destructive",
+              })
         })
     }
   return (
@@ -31,6 +48,7 @@ function WritePost() {
             <div className='p-4 bg-white rounded-lg mt-2'>
                 <textarea placeholder="What's new?" 
                 className='outline-none w-full'
+                value={userInputPost}
                 onChange={(e) => setUserInputPost(e.target.value)}
                 />
             </div>

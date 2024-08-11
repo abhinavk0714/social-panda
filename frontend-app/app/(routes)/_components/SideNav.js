@@ -11,7 +11,7 @@ function SideNav({ toggleSideBar }) {
   const { user } = useUser();
   
   return (
-    <div className='h-full p-5 border'>
+    <div className='fixed top-0 left-0 h-screen w-64 p-5 border-r border-gray-200 bg-white'>
       <Image 
         src='/logo.svg' 
         alt='logo'
@@ -19,7 +19,7 @@ function SideNav({ toggleSideBar }) {
         height={200}
       />
 
-      <div className='flex flex-col mt-10'>
+      <div className='flex flex-col mt-10 overflow-y-auto'>
         {MenuList.map((item, index) => (
           <Link 
             key={index}

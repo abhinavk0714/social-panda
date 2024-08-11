@@ -1,4 +1,5 @@
 "use client";
+import { Toaster } from '@/components/ui/toaster';
 import { ClerkProvider } from '@clerk/nextjs'
 import { Outfit } from 'next/font/google'
 import { useState } from 'react'
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <UserDetailContext.Provider value={{userDetail, setUserDetail}}>
     <html lang="en">
-      <body className={inter.className} >{children}</body>
+      <body className={inter.className} >{children}
+        <Toaster/>
+      </body>
     </html>
     </UserDetailContext.Provider>
     </ClerkProvider>

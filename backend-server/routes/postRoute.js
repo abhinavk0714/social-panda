@@ -7,7 +7,7 @@ const router = express.Router();
 // Get all posts
 router.get('/', async(req, res) => {
     try {
-        const posts=await Post.find().populate('createdBy');
+        const posts=await Post.find().populate('createdBy').sort({createdAt:-1});
         res.json(posts)
     } catch (error) {
         res.status(500).json({message:error.message})
