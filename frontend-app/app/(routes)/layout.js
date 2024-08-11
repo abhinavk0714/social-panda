@@ -1,23 +1,35 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SideNav from './_components/SideNav'
 import Header from './_components/Header'
 import GlobalApi from '../_utils/GlobalApi'
 import { useUser } from '@clerk/nextjs';
+import { UserDetailContext } from '../_context/UserDetailContext'
 
 
 function layout({ children }) {
   const [toggleSideBar, setToggleSideBar] = useState(true)
   const {user}=useUser();
-  
-  useEffect(()=>{
-    user&&getUserDetails();
-  },[user])
-  const getUserDetails=()=>{
-    GlobalApi.getUserByEmail(user.primaryEmailAddress.emailAddress).then(resp=>{
-      console.log(resp);
-    })
-  }
+  const{userDetail, setUserDetail} = useContext(UserDetailContext);
+  useEffect(() => {
+    if (user && user.primaryEmailAddress) {
+        getUserDetails();
+    }
+}, [user]);
+const getUserDetails = () => {
+  GlobalApi.getUserByEmail(user.primaryEmailAddress.emailAddress)
+  .then((resp) => {
+      setUserDetail(resp.data);
+      if (resp.data) {
+          console.log('User Data:', resp.data);
+      } else {
+          console.log('No user data found.');
+      }
+  })
+  .catch((error) => {
+      console.error('Error fetching user details:', error);
+  });
+};
   return (
     <div>
 
