@@ -29,3 +29,13 @@ Content-Type: application/json
     "createdBy": "66b559370714b090abdd3913",
     "imageUrl": "sample url"
 }
+
+###
+
+PUT  http://localhost:8000/post/like/66b93f73ad58b07e739976c5
+Content-Type: application/json
+
+{
+    "userId": "66b559370714b090abdd3913",
+    "isLike": true
+}

@@ -7,7 +7,10 @@ const router = express.Router();
 // Get all posts
 router.get('/', async(req, res) => {
     try {
-        const posts=await Post.find().populate('createdBy').sort({createdAt:-1});
+        const posts=await Post.find()
+        .populate('createdBy')
+        .populate('likes')
+        .sort({createdAt:-1});
         res.json(posts)
     } catch (error) {
         res.status(500).json({message:error.message})
@@ -27,6 +30,28 @@ router.post('/', async(req, res) => {
         res.status(201).json(postRes);
     } catch (error) {
         res.status(500).json({message:error.message})
+    }
+})
+
+// Like post
+router.put("/like/:postId", async(req, res) => {
+    try {
+        const postId = req.params.postId;
+        const data = {
+            userId:req.body.userId,
+            isLike:req.body.isLike
+        }
+        const post = await Post.findById(postId);
+        if(!post.likes) {
+            const updatePost = await Post.findByIdAndUpdate(postId,{likes:[]}, {upsert:true, runValidators:true});
+            await updatePost.save();
+        }
+        const updatedPost = await Post.findById(postId);
+        data.isLike ? updatedPost.likes.push(data.userId) : updatedPost.likes.pop(data.userId);
+        const result = await updatedPost.save();
+        res.status(201).json(result);
+    } catch (error) {
+        res.status(500).json({message:error.message});
     }
 })
 

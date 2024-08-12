@@ -10,7 +10,8 @@ const postSchema=new moongoose.Schema({
     createdBy:{
         type:moongoose.Schema.Types.ObjectId,ref:'user',
         require:true
-    }
+    },
+    likes:[{type:moongoose.Schema.Types.ObjectId, ref:'user'}]
 })
 
 module.exports = moongoose.model('post', postSchema)
