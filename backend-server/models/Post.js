@@ -1,6 +1,6 @@
-const {default:moongoose, default: mongoose} = require("mongoose")
+const {default:mongoose} = require("mongoose")
 
-const postSchema=new moongoose.Schema({
+const postSchema = new mongoose.Schema({
     postText:{
         type:String,
         require:true
@@ -8,10 +8,11 @@ const postSchema=new moongoose.Schema({
     createdAt:String,
     imageUrl:String,
     createdBy:{
-        type:moongoose.Schema.Types.ObjectId,ref:'user',
+        type:mongoose.Schema.Types.ObjectId,ref:'user',
         require:true
     },
-    likes:[{type:moongoose.Schema.Types.ObjectId, ref:'user'}]
+    likes:[{type:mongoose.Schema.Types.ObjectId, ref:'user'}],
+    comments:[{type:mongoose.Schema.Types.ObjectId, ref:'comment'}]
 })
 
-module.exports = moongoose.model('post', postSchema)
+module.exports = mongoose.model('post', postSchema)

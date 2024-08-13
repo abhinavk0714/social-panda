@@ -1,6 +1,7 @@
+import { data } from "autoprefixer";
 import { PostponedPathnameNormalizer } from "next/dist/server/future/normalizers/request/postponed";
 
-const { default: axios } = require("axios");
+const { default: axios, Axios } = require("axios");
 
 //created axios client to create endpoint
 const axiosClient=axios.create({
@@ -9,16 +10,16 @@ const axiosClient=axios.create({
 
 const createUser = (data) => axiosClient.post('/user', data);
 const getUserByEmail = (email) => axiosClient.get(`/user/${email}`);
-
 const createPost = (data) => axiosClient.post('/post', data);
 const getAllPosts = () => axiosClient.get('/post');
-
-const onPostLike = (postId, data) => axiosClient.put("/post/like/"+postId, data)
+const onPostLike = (postId, data) => axiosClient.put("/post/like/"+postId, data);
+const addComment = (data) => axiosClient.post('/comment', data);
 
 export default{
     createUser,
     getUserByEmail,
     createPost,
     getAllPosts,
-    onPostLike
+    onPostLike,
+    addComment
 }

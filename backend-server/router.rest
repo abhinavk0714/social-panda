@@ -39,3 +39,16 @@ Content-Type: application/json
     "userId": "66b559370714b090abdd3913",
     "isLike": true
 }
+
+
+###
+
+POST http://localhost:8000/comment
+Content-Type: application/json 
+
+{
+    "post": "66b93f73ad58b07e739976c5",
+    "commentText": "Wow very inspiring!",
+    "createdBy": "66b559370714b090abdd3913",
+    "createdAt": "12345"
+}

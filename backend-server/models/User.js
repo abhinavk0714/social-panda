@@ -1,6 +1,6 @@
-const {default:moongoose, default: mongoose} = require("mongoose")
+const {default:mongoose} = require("mongoose")
 
-const userSchema=new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name:{
         type:String,
         require:true
@@ -12,4 +12,4 @@ const userSchema=new mongoose.Schema({
     image:String
 })
 
-module.exports = moongoose.model('user', userSchema)
+module.exports = mongoose.model('user', userSchema)
