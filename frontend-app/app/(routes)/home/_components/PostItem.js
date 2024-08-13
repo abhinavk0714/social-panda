@@ -6,11 +6,14 @@ import GlobalApi from '@/app/_utils/GlobalApi';
 import { useUser } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Send } from 'lucide-react';
+import { toast, useToast } from '@/components/ui/use-toast';
 
 function PostItem({post, updatePostList}) {
     const {userDetail, setUserDetail} = useContext(UserDetailContext);
     const {user} = useUser();
     const [userInputComment, setUserInputComment] = useState();
+    const {toast} = useToast();
+
     const checkIfUserLiked = (postLikes) => {
         return postLikes.find(item=>item._id == userDetail?._id);
     }
@@ -24,6 +27,26 @@ function PostItem({post, updatePostList}) {
             console.log(resp);
             updatePostList();
         })
+    }
+
+    const addComment = (postId) => {
+        const data = {
+            commentText: userInputComment,
+            createdBy: userDetail._id,
+            post: postId,
+            createdAt: Date.now().toString()
+        }
+        GlobalApi.addComment(data).then(resp => {
+            if(resp) {
+                toast({
+                    title: "Awesome!",
+                    description: "Your comment was added successfully",
+                    variant: "success"
+                })
+                updatePostList();
+            }
+        })
+        setUserInputComment('');
     }
   return (
     <div className='p-5 border rounded-lg my-5'>
@@ -69,7 +92,8 @@ function PostItem({post, updatePostList}) {
         </div>
 
         {/*Comment Section */}
-        <div className='mt-5'>
+        
+        {user && <div className='mt-5'>
         <hr className='mb-5'></hr>
         <div className='flex gap-4 items-center'>
             <Image src={user?.imageUrl}
@@ -84,10 +108,13 @@ function PostItem({post, updatePostList}) {
             placeholder='Write a comment'
             className='w-full bg-slate-100 p-2 rounded-full px-5 outline-blue-300'
             />
-            <Button className="bg-blue-400 text-white p-2 h-8 w-10 rounded-xl hover:bg-blue-600">
+            <Button
+            disabled={!userInputComment}
+            onClick={()=>addComment(post._id)}
+            className="bg-blue-400 text-white p-2 h-8 w-10 rounded-xl hover:bg-blue-600">
                 <Send/></Button>
         </div>
-        </div>
+        </div>}
     </div>
   )
 }
