@@ -52,3 +52,8 @@ Content-Type: application/json
     "createdBy": "66b559370714b090abdd3913",
     "createdAt": "12345"
 }
+
+
+###
+
+DELETE http://localhost:8000/comment/66bd1fe6a7865ed1b5c0b152
