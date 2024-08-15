@@ -65,7 +65,7 @@ function PostItem({ post, updatePostList }) {
         <div className='p-5 border rounded-lg my-5'>
             <div className='flex gap-2 items-center'>
                 <Image
-                    src={post?.createdBy.image}
+                    src={post?.createdBy?.image}
                     alt="user-image"
                     width={35}
                     height={35}
