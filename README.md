@@ -1,4 +1,4 @@
-# SocialPanda
+# SocialPanda 🐼
 
 Welcome to SocialPanda, a social networking application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). SocialPanda allows users to sign up, create posts, like and comment on posts, and manage their profiles. This project showcases the power of modern web technologies and the flexibility of the MERN stack.
 
