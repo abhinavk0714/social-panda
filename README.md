@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SocialPanda
+
+Welcome to SocialPanda, a social networking application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). SocialPanda allows users to sign up, create posts, like and comment on posts, and manage their profiles. This project showcases the power of modern web technologies and the flexibility of the MERN stack.
+
+## Features
+
+- **User Authentication:** Sign up and sign in using Clerk for authentication.
+- **User Profiles:** Manage user profiles with custom metadata.
+- **Post Management:** Create, update, and delete posts.
+- **Like and Comment:** Like and comment on posts with real-time updates.
+- **Responsive Design:** Built with a mobile-first approach for an optimal user experience.
+
+## Technologies Used
+
+- **MongoDB:** NoSQL database for storing user and post data.
+- **Express.js:** Backend framework for handling API requests and routing.
+- **React.js:** Frontend library for building dynamic user interfaces.
+- **Node.js:** Server environment for running the application.
+- **Clerk:** Authentication service for user sign-up and sign-in.
+- **Next.js:** Framework for server-rendered React applications.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (>=14.x)
+- MongoDB (local instance or MongoDB Atlas)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    ```bash
+    git clone https://github.com/yourusername/socialpanda.git
+    cd socialpanda
+    ```
+
+2. Install dependencies for both frontend and backend:
+
+    ```bash
+    # Install frontend dependencies
+    cd frontend-app
+    npm install
+    # or
+    yarn install
+
+    # Install backend dependencies
+    cd ../backend-server
+    npm install
+    # or
+    yarn install
+    ```
+
+3. Configure environment variables:
+
+    - Create a `.env.local` file in the `frontend-app` directory and add your Clerk API keys:
+    
+      ```plaintext
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+      CLERK_SECRET_KEY=your-clerk-secret-key
+
+      NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+      NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+      ```
+
+    - Create a `.env` file in the `backend-server` directory with your MongoDB URI:
+
+      ```plaintext
+      MONGODB_URL=your-mongodb-connection-uri
+      ```
+
+4. Start the development server:
+
+    ```bash
+    # Start the backend server
+    cd ../backend-server
+    npm run dev
+    # or
+    yarn dev
+
+    # Start the frontend server
+    cd ../frontend-app
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Clerk Documentation](https://clerk.dev/docs) - Learn how to integrate Clerk for user authentication.
+- [MERN Stack Tutorial](https://www.mongodb.com/mern-stack) - Comprehensive guide to the MERN stack.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Feel free to explore the code, contribute, and provide feedback!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Status
 
-## Deploy on Vercel
+Currently a work in progress. Continuous improvements and updates are underway.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
